@@ -1,0 +1,398 @@
+{
+  "generatedAt": "2026-10-15T09:03:22.095Z",
+  "model": "DeepSeek-V4-Flash-0731",
+  "chat": [
+    {
+      "q": "特休有幾天？要怎麼申請？",
+      "answer": "根據《請假管理辦法》：\n\n## 特休天數（以到職日為基準，週年制）\n\n| 到職滿 | 特休天數 |\n|---|---:|\n| 6 個月 | 3 天 |\n| 1 年 | 7 天 |\n| 2 年 | 10 天 |\n| 3 年 | 14 天 |\n| 5 年 | 15 天 |\n| 10 年以上 | 每年加 1 天，最多 30 天 |\n\n未休完的特休可遞延至次一年度；次年度仍未休完者，折算工資。\n\n---\n\n## 申請流程\n\n1. 登入 HR 系統（hr.yaosen.example.com）填寫假單  \n2. 選擇假別：特休  \n3. 填寫起訖日期、代理人  \n4. 核准權限：\n   - 3 天以內：直屬主管核准\n   - 超過 3 天：加簽部門主管\n   - 超過 5 天：加簽 HR\n5. 核准後系統自動通知代理人與 HR 備查\n\n緊急狀況（突發疾病、事故）可於當日中午前用通訊軟體告知主管，事後 3 個工作天內補送假單。\n\n另外，請假最小單位為 0.5 天；特休可以「小時」為單位申請。連續請假超過 10 天需召開交接會議並填寫交接文件。",
+      "sources": [
+        {
+          "doc": "請假管理辦法",
+          "heading": "特別休假（特休）",
+          "score": 0.0328,
+          "via": "bm25+vector",
+          "snippet": "依勞基法規定，特休天數依年資計算：\n\n- 到職滿 6 個月：3 天\n- 到職滿 1 年：7 天\n- 到職滿 2 年：10 天\n- 到職滿 3 年：14 天\n- 到職滿 5 年：15 天\n- 到職滿 10 年以上：每年加 1 天，最多 30 天\n\n特休以到職日為計算基準（週年制），未休完之特休可遞延至次一年度，次年度仍未休完者折算工資。"
+        },
+        {
+          "doc": "薪資與福利",
+          "heading": "其他福利",
+          "score": 0.032,
+          "via": "bm25+vector",
+          "snippet": "- 教育訓練補助：每年 NT$20,000，需事前申請並於結訓後提出心得報告\n- 購書補助：不限金額，經主管核准後憑發票核銷\n- 員工旅遊：每兩年一次，最近一次為 2025 年沖繩\n- 生日假：生日當月可任選一天休假（不併入特休）"
+        },
+        {
+          "doc": "請假管理辦法",
+          "heading": "申請流程",
+          "score": 0.0318,
+          "via": "bm25+vector",
+          "snippet": "1. 登入 HR 系統（hr.yaosen.example.com）填寫假單\n2. 選擇假別、起訖日期、代理人\n3. 直屬主管核准（3 天以內）；超過 3 天需加簽部門主管；超過 5 天需加簽 HR\n4. 核准後系統自動通知代理人與 HR 備查\n\n緊急狀況（突發疾病、事故）可於當日中午前以通訊軟體告知主管，事後 3 個工作天內補送假單。\n\n## 注意事項\n- 請假最小單位為 0.5 天；特休與補休"
+        },
+        {
+          "doc": "帳號與權限申請",
+          "heading": "新帳號申請流程",
+          "score": 0.0303,
+          "via": "bm25+vector",
+          "snippet": "1. 在 IT 工單系統建立「帳號申請」工單\n2. 填寫：系統名稱、需要的角色/權限、用途說明\n3. 直屬主管核准 → IT 開通\n4. SLA：一般申請 2 個工作天；涉及機密資料（客戶資料、財務）另需資安組會簽，5 個工作天"
+        },
+        {
+          "doc": "差旅與報帳",
+          "heading": "報帳規則",
+          "score": 0.0296,
+          "via": "bm25+vector",
+          "snippet": "- 核銷時限：費用發生後 15 天內送出報帳單，逾期需部門主管特批\n- 單據：需有統一編號 53088214 之發票；無統編發票不予核銷\n- 計程車/外食需附簽單或明細，並註明事由與同行人\n- 電子發票可上傳截圖，紙本發票交至行政櫃檯（5F）\n\n## 付款方式\n報帳單核准後於次月 10 日隨薪資入帳。大額墊款（超過 NT$20,000）可申請緊急付款。\n\n## 常見退件原因\n- 發票未打統編或統編"
+        }
+      ]
+    },
+    {
+      "q": "VPN 要怎麼設定？",
+      "answer": "要設定公司 VPN（WireGuard），請先確認你已經有 VPN 帳號；如果還沒有，請先完成申請，再依照你的裝置類型設定。\n\n---\n\n## 一、申請 VPN 帳號（如果還沒申請）\n\n1. 到 IT 工單系統開立「VPN 帳號申請」工單，類別選「存取權限」。\n2. 工單需經你的直屬主管核准。\n3. IT 會在 1 個工作天內建立帳號，並將設定檔（`.conf`）與 QR code 寄到你的公司信箱。\n\n---\n\n## 二、電腦設定（macOS / Windows）\n\n1. 安裝 WireGuard 官方客戶端。\n2. 匯入 IT 寄給你的 `.conf` 設定檔，或直接掃描 QR code。\n3. 啟用隧道，名稱是 **「yaosen-office」**。\n4. 驗證是否成功：\n   - 用瀏覽器開啟 `https://kb.yaosen.internal`\n   - 如果可以正常開啟，代表 VPN 連線成功。\n\n---\n\n## 三、手機設定\n\n1. 安裝 WireGuard App。\n2. 開啟 App 後，掃描 IT 提供的 QR code。\n3. 啟用「yaosen-office」隧道即可。\n\n> 注意：手機 VPN 僅供查閱 KB 與收發公司信件使用。\n\n---\n\n## 四、常見問題與注意事項\n\n- **連不上 VPN**\n  - 確認設定檔未過期（憑證效期 1 年）。\n  - 檢查本地防火牆是否阻擋 UDP 51820。\n\n- **連上但無法開啟內網**\n  - 可能是 DNS 被本機覆寫，請將 DNS 設定改為「僅使用 tunnel DNS」。\n\n- **憑證過期**\n  - 請在 IT 工單系統申請重新簽發，舊憑證會立即失效。\n\n---\n\n## 五、安全提醒\n\n- VPN 設定檔內含私鑰，**禁止上傳到任何雲端空間或通訊軟體**。\n- 在公共 Wi-Fi 環境下存取公司資源，一律必須開啟 VPN。\n- 離職當日 VPN 帳號會自動失效。\n\n如果有其他問題，可以直接發 IT 工單詢問。",
+      "sources": [
+        {
+          "doc": "VPN 與遠端存取",
+          "heading": "設定步驟（macOS / Windows）",
+          "score": 0.0325,
+          "via": "bm25+vector",
+          "snippet": "1. 安裝 WireGuard 官方客戶端\n2. 匯入 IT 提供的 .conf 設定檔，或掃描 QR code\n3. 啟用 tunnel「yaosen-office」\n4. 驗證：瀏覽器開啟 https://kb.yaosen.internal 能開啟即成功\n\n## 設定步驟（手機）\n使用 WireGuard App 掃描 QR code 即可。手機 VPN 僅供查閱 KB 與收發公司信件使用。"
+        },
+        {
+          "doc": "VPN 與遠端存取",
+          "heading": "適用範圍",
+          "score": 0.0317,
+          "via": "bm25+vector",
+          "snippet": "存取內部系統（HR 系統、KB、內部 GitLab、staging 環境）必須透過公司 VPN。公司 VPN 使用 WireGuard 協定。\n\n## 申請 VPN 帳號\n1. 在 IT 工單系統建立「VPN 帳號申請」工單（類別：存取權限）\n2. 工單需經直屬主管核准\n3. IT 會在 1 個工作天內建立帳號並寄送設定檔（.conf）與 QR code 至公司信箱"
+        },
+        {
+          "doc": "IntentFlow API 與整合",
+          "heading": "API 概覽",
+          "score": 0.0315,
+          "via": "bm25+vector",
+          "snippet": "- REST API：`https://api.intentflow.example.com/v1`\n- 認證：`Authorization: Bearer <API Key>`，金鑰於後台「開發者設定」產生，可設定 scope（read / run / admin）\n- 速率限制：Starter 60 req/min、Pro 600 req/min、Enterprise 3000 req/min"
+        },
+        {
+          "doc": "IntentFlow 產品 FAQ",
+          "heading": "常見問題",
+          "score": 0.0313,
+          "via": "bm25+vector",
+          "snippet": "- 流程執行失敗看哪裡？ → 後台「執行紀錄」每個節點都有 input/output 與錯誤訊息\n- 可以多人協作嗎？ → Pro 以上支援多人編輯與版本歷史\n- AI 回覆亂講怎麼辦？ → 開啟「知識庫引用模式」強制附來源，並可設信心門檻，低於門檻轉人工"
+        },
+        {
+          "doc": "VPN 與遠端存取",
+          "heading": "常見問題",
+          "score": 0.0308,
+          "via": "bm25+vector",
+          "snippet": "- 連不上：先確認設定檔未過期（憑證效期 1 年），再檢查本地防火牆是否擋 UDP 51820\n- 連上但無法開內網：DNS 被本機覆寫，將 DNS 改為「僅 tunnel DNS」\n- 憑證過期：工單申請重新簽發，舊憑證會立即失效\n\n## 安全規範\n- VPN 設定檔含私鑰，禁止上傳至任何雲端空間或通訊軟體\n- 公共 Wi-Fi 環境下存取公司資源一律需開啟 VPN\n- 離職當日 VPN 帳號自"
+        }
+      ]
+    },
+    {
+      "q": "IntentFlow 的 webhook 重試機制是什麼？",
+      "answer": "根據 IntentFlow 文件，Webhook 重試機制如下：\n\n- **觸發重試的條件**：當 Webhook 回應 **HTTP 5xx** 或發生 **逾時** 時，會啟動重試。\n- **逾時時間**：Webhook 預設逾時為 **30 秒**。\n- **重試次數與間隔**：採用**指數退避**，共重試 **5 次**，間隔依序為：\n  1. 1 分鐘\n  2. 5 分鐘\n  3. 15 分鐘\n  4. 1 小時\n  5. 6 小時\n- **重試全部失敗後**：訊息會被寫入 **dead-letter queue（DLQ）**，之後可在 IntentFlow 後台**手動重送**。\n\n另外，若要接收 IntentFlow 的 Webhook 通知，建議驗證 `X-IF-Signature` 簽章以確保呼叫來源正確。",
+      "sources": [
+        {
+          "doc": "IntentFlow 產品 FAQ",
+          "heading": "Webhook 與整合",
+          "score": 0.0328,
+          "via": "bm25+vector",
+          "snippet": "- 對外整合：Slack、LINE、Google Calendar、Notion、Webhook（自訂 header + HMAC 簽章）\n- Inbound webhook：每個流程可產生專屬 URL 觸發執行\n- Webhook 重試機制：HTTP 5xx 或逾時會以指數退避重試 5 次（1m、5m、15m、1h、6h），全部失敗後寫入 dead-letter queue，可在後台手動重送\n-"
+        },
+        {
+          "doc": "IntentFlow API 與整合",
+          "heading": "Webhooks",
+          "score": 0.0323,
+          "via": "bm25+vector",
+          "snippet": "- 訂閱事件：`run.finished`、`run.failed`、`kb.document.indexed`\n- 簽章：Header `X-IF-Signature` = HMAC-SHA256(body, secret)，請務必驗證\n- 重試：5xx/逾時以 1m、5m、15m、1h、6h 重試共 5 次，失敗進入 DLQ"
+        },
+        {
+          "doc": "VPN 與遠端存取",
+          "heading": "常見問題",
+          "score": 0.0303,
+          "via": "bm25+vector",
+          "snippet": "- 連不上：先確認設定檔未過期（憑證效期 1 年），再檢查本地防火牆是否擋 UDP 51820\n- 連上但無法開內網：DNS 被本機覆寫，將 DNS 改為「僅 tunnel DNS」\n- 憑證過期：工單申請重新簽發，舊憑證會立即失效\n\n## 安全規範\n- VPN 設定檔含私鑰，禁止上傳至任何雲端空間或通訊軟體\n- 公共 Wi-Fi 環境下存取公司資源一律需開啟 VPN\n- 離職當日 VPN 帳號自"
+        },
+        {
+          "doc": "IntentFlow 產品 FAQ",
+          "heading": "常見問題",
+          "score": 0.0303,
+          "via": "bm25+vector",
+          "snippet": "- 流程執行失敗看哪裡？ → 後台「執行紀錄」每個節點都有 input/output 與錯誤訊息\n- 可以多人協作嗎？ → Pro 以上支援多人編輯與版本歷史\n- AI 回覆亂講怎麼辦？ → 開啟「知識庫引用模式」強制附來源，並可設信心門檻，低於門檻轉人工"
+        },
+        {
+          "doc": "常見問題總整理（FAQ）",
+          "heading": "IT 類",
+          "score": 0.0294,
+          "via": "bm25+vector",
+          "snippet": "- 忘記密碼：SSO 頁面點「忘記密碼」，或找 IT（分機 299）重設\n- 電腦故障：開 IT 工單，緊急狀況直接到 5F IT 座位區\n- 新軟體安裝：工單申請（需列用途），免安裝版軟體仍須通報資安"
+        }
+      ]
+    },
+    {
+      "q": "發薪日是每個月幾號？午餐補助多少？",
+      "answer": "每月 5 日發放前一個月薪資，若遇假日會提前至前一個工作日。  \n午餐補助為每月 NT$3,000，隨薪資發放。",
+      "sources": [
+        {
+          "doc": "薪資與福利",
+          "heading": "發薪日",
+          "score": 0.0328,
+          "via": "bm25+vector",
+          "snippet": "每月 5 日發放前一個月薪資。若遇假日則提前至前一個工作日發放。薪資直接匯入員工登記之薪資帳戶。\n\n## 薪資結構\n- 本薪 + 職務加給 + 伙食津貼\n- 午餐補助：每月 NT$3,000，隨薪資發放\n- 年終獎金：依公司營運與個人績效，基準為 1.5 個月，於農曆年前發放\n- 績效獎金：每季結算，依 OKR 達成率核算\n\n## 保險與退休金\n- 勞保、健保、勞退 6% 雇主提繳\n- 團體保險："
+        },
+        {
+          "doc": "薪資與福利",
+          "heading": "其他福利",
+          "score": 0.0323,
+          "via": "bm25+vector",
+          "snippet": "- 教育訓練補助：每年 NT$20,000，需事前申請並於結訓後提出心得報告\n- 購書補助：不限金額，經主管核准後憑發票核銷\n- 員工旅遊：每兩年一次，最近一次為 2025 年沖繩\n- 生日假：生日當月可任選一天休假（不併入特休）"
+        },
+        {
+          "doc": "常見問題總整理（FAQ）",
+          "heading": "HR 類",
+          "score": 0.0308,
+          "via": "bm25+vector",
+          "snippet": "- 在職證明／離職證明：HR 系統自助申請，1 個工作天開立\n- 薪資單：HR 系統每月 5 日後可下載\n- 健保眷屬加保：HR 系統「保險異動」，附戶口名簿影本"
+        },
+        {
+          "doc": "請假管理辦法",
+          "heading": "特別休假（特休）",
+          "score": 0.0305,
+          "via": "bm25+vector",
+          "snippet": "依勞基法規定，特休天數依年資計算：\n\n- 到職滿 6 個月：3 天\n- 到職滿 1 年：7 天\n- 到職滿 2 年：10 天\n- 到職滿 3 年：14 天\n- 到職滿 5 年：15 天\n- 到職滿 10 年以上：每年加 1 天，最多 30 天\n\n特休以到職日為計算基準（週年制），未休完之特休可遞延至次一年度，次年度仍未休完者折算工資。"
+        },
+        {
+          "doc": "差旅與報帳",
+          "heading": "報帳規則",
+          "score": 0.0304,
+          "via": "bm25+vector",
+          "snippet": "- 核銷時限：費用發生後 15 天內送出報帳單，逾期需部門主管特批\n- 單據：需有統一編號 53088214 之發票；無統編發票不予核銷\n- 計程車/外食需附簽單或明細，並註明事由與同行人\n- 電子發票可上傳截圖，紙本發票交至行政櫃檯（5F）\n\n## 付款方式\n報帳單核准後於次月 10 日隨薪資入帳。大額墊款（超過 NT$20,000）可申請緊急付款。\n\n## 常見退件原因\n- 發票未打統編或統編"
+        }
+      ]
+    },
+    {
+      "q": "收到釣魚信件要怎麼通報？",
+      "answer": "收到釣魚信件時，請依《資訊安全政策》處理：\n\n1. **不要點擊信件中的任何連結，也不要開啟附件。**\n2. 在 Gmail 中點選「**回報網路釣魚**」。\n3. 將該信件**轉寄至 security@yaosen.example.com** 進行通報。\n4. 若信件內容涉及「要求匯款、緊急採購、輸入帳密」等，請特別留意：\n   - 財務相關指示，**務必以電話向當事人二次確認**。\n5. 如果你已經點擊連結或輸入了帳號密碼：\n   - **立即通知 IT**（分機 299 或 security@yaosen.example.com）。\n   - **立即更換密碼**，並**重設 2FA**。\n\n請勿自行刪除或處理可疑郵件，保留原始內容供資安單位調查。",
+      "sources": [
+        {
+          "doc": "資訊安全政策",
+          "heading": "釣魚信與社交工程",
+          "score": 0.0328,
+          "via": "bm25+vector",
+          "snippet": "收到可疑郵件（要求匯款、點連結、輸入帳密、緊急採購）：\n\n1. 不要點連結或開啟附件\n2. 按 Gmail 的「回報網路釣魚」，並轉寄 security@yaosen.example.com\n3. 若已點擊或輸入帳密，立即通知 IT 並更換密碼、重設 2FA\n4. 財務相關指示一律以電話向當事人二次確認"
+        },
+        {
+          "doc": "資訊安全政策",
+          "heading": "事件通報",
+          "score": 0.0313,
+          "via": "bm25+vector",
+          "snippet": "發現資安事件（異常登入、資料外洩跡象、勒索軟體）立即通報 IT 分機 299 或 security@yaosen.example.com，並依《資料外洩應變 SOP》處理。"
+        },
+        {
+          "doc": "資料外洩應變 SOP",
+          "heading": "分級",
+          "score": 0.0313,
+          "via": "bm25+vector",
+          "snippet": "- P0：客戶個資或機密資料已確認外流；系統遭入侵\n- P1：疑似外洩但尚未確認範圍\n- P2：內部文件誤傳給非授權對象，但對象可信\n\n## P0/P1 應變流程\n1. 通報：發現者立即通知資安窗口（security@yaosen.example.com、分機 299），成立應變群組\n2. 止血：隔離受影響主機／停用外洩帳號與金鑰／關閉外連通道（1 小時內）\n3. 盤點：確認外洩範圍（資料筆數、類"
+        },
+        {
+          "doc": "新人報到指南",
+          "heading": "帳號開通",
+          "score": 0.0306,
+          "via": "bm25+vector",
+          "snippet": "IT 會在報到前一日開通：\n\n- Google Workspace 帳號（email：名字@yaosen.example.com）\n- Slack、HR 系統、知識庫（KB）帳號\n- VPN 憑證（遠端工作需要，另行申請）\n\n## 試用期\n試用期為 3 個月。期滿前兩週由直屬主管進行考核面談，通過後發放正式任用通知。"
+        },
+        {
+          "doc": "帳號與權限申請",
+          "heading": "GitLab / 程式碼權限",
+          "score": 0.0286,
+          "via": "bm25+vector",
+          "snippet": "- Developer：push 至非保護分支、送 MR——到職即開通\n- Maintainer：合併 MR、管理專案設定——需團隊 Tech Lead 核准\n- 正式環境部署權：需完成「部署 SOP」訓練並通過測驗\n\n## 離職與異動\n部門異動後原權限保留 30 天供交接，逾期由 IT 收回。離職帳號於離職日 18:00 停用。"
+        }
+      ]
+    }
+  ],
+  "agent": [
+    {
+      "q": "幫我查王小明的特休餘額，然後幫他送一張下週一到週三的特休假單",
+      "answer": "已完成！以下是本次處理的總結：\n\n**✅ 特休餘額查詢**\n- 王小明（工程部）目前特休餘額：**10 天**，足夠使用。\n\n**✅ 特休假單已送出**\n- 假別：特休\n- 期間：**2026-10-19（一）～ 2026-10-21（三）**，共 3 天\n- 狀態：待主管核准\n- **假單編號：LV-A005F17F**\n\n送出後剩餘特休約 7 天。若有需要修改事由或日期，再告訴我，我可以協助處理喔！",
+      "trace": [
+        {
+          "type": "round",
+          "round": 1
+        },
+        {
+          "type": "tool_call",
+          "name": "leave_balance",
+          "args": {
+            "name": "王小明"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "leave_balance",
+          "result": "{\n \"name\": \"王小明\",\n \"annual\": 10,\n \"sick\": 30,\n \"personal\": 14,\n \"comp\": 3.5,\n \"dept\": \"工程部\"\n}"
+        },
+        {
+          "type": "round",
+          "round": 2
+        },
+        {
+          "type": "tool_call",
+          "name": "create_leave_request",
+          "args": {
+            "name": "王小明",
+            "type": "特休",
+            "start": "2026-10-19",
+            "end": "2026-10-21",
+            "reason": "個人特休"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "create_leave_request",
+          "result": "假單已建立：LV-A005F17F\n員工：王小明（工程部）\n假別：特休\n期間：2026-10-19 ~ 2026-10-21（3 天）\n狀態：待主管核准"
+        },
+        {
+          "type": "round",
+          "round": 3
+        },
+        {
+          "type": "answer",
+          "text": "已完成！以下是本次處理的總結：\n\n**✅ 特休餘額查詢**\n- 王小明（工程部）目前特休餘額：**10 天**，足夠使用。\n\n**✅ 特休假單已送出**\n- 假別：特休\n- 期間：**2026-10-19（一）～ 2026-10-21（三）**，共 3 天\n- 狀態：待主管核准\n- **假單編號：LV-A005F17F**\n\n送出後剩餘特休約 7 天。若有需要修改事由或日期，再告訴我，我可以協助處理喔！",
+          "usage": {
+            "input": 1802,
+            "output": 144,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1946,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "q": "IntentFlow webhook 失敗會重試幾次？順便幫我開一張 P2 工單追蹤這個問題",
+      "answer": "已為你完成查詢並開立工單，總結如下：\n\n**1. IntentFlow webhook 失敗重試次數**\n根據《IntentFlow API 與整合》與《IntentFlow 產品 FAQ》的說明：\n- 當接收端回傳 **HTTP 5xx** 或 **逾時（30 秒）** 時，會以**指數退避**方式重試 **共 5 次**（間隔 1m、5m、15m、1h、6h）。\n- 5 次全部失敗後，訊息會寫入 **dead-letter queue（DLQ）**，可在後台手動重送。\n- 另外提醒：webhook 帶有 `X-IF-Signature`（HMAC-SHA256），接收端務必驗證簽章。\n\n**2. IT 工單**\n已建立一筆 P2 工單追蹤此問題：\n- 單號：**IT-1EABD0E8**\n- 標題：【追蹤】IntentFlow webhook 傳遞失敗與重試機制確認\n- 狀態：Open（待 IT 團隊 SLA 內回覆）\n\n備註：工單目前是「機制確認」性質。如果你手上其實有具體的失敗事件（例如某筆 run 一直投遞失敗、DLQ 有堆積），可以給我相關的 run ID 或接收端服務名稱，我再幫你把細節補進工單，加速處理。",
+      "trace": [
+        {
+          "type": "round",
+          "round": 1
+        },
+        {
+          "type": "tool_call",
+          "name": "kb_search",
+          "args": {
+            "query": "IntentFlow webhook 失敗 重試 次數"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "kb_search",
+          "result": "〔1〕《IntentFlow API 與整合》—Webhooks\n- 訂閱事件：`run.finished`、`run.failed`、`kb.document.indexed`\n- 簽章：Header `X-IF-Signature` = HMAC-SHA256(body, secret)，請務必驗證\n- 重試：5xx/逾時以 1m、5m、15m、1h、6h 重試共 5 次，失敗進入 DLQ\n\n〔2〕《IntentFlow 產品 FAQ》—Webhook 與整合\n- 對外整合：Slack、LINE、Google Calendar、Notion、Webhook（自訂 header + HMAC 簽章）\n- Inbound webhook：每個流程可產生專屬 URL 觸發執行\n- Webhook 重試機制：HTTP 5xx 或逾時會以指數退避重試 5 次（1m、5m、15m、1h、6h），全部失敗後寫入 dead-letter queue，可在後台手動重送\n- Webhook 逾時時間：30 秒\n\n〔3〕《VPN 與遠端存取》—常見問題\n- 連不上：先確認設定檔未過期（憑證效期 1 年），再檢查本地防火牆是否擋 UDP 51820\n- 連上但無法開內網：DNS 被本機覆寫，將 DNS 改為「僅 tunnel DNS」\n- 憑證過期：工單申請重新簽發，舊憑證會立即失效\n\n## 安全規範\n- VPN 設定檔含私鑰，禁止上傳至任何雲端空間或通訊軟體\n- 公共 Wi-Fi 環境下存取公司資源一律需開啟 VPN\n- 離職當日 VPN 帳號自動失效\n\n〔4〕《IntentFlow 產品 FAQ》—常見問題\n- 流程執行失敗看哪裡？ → 後台「執行紀錄」每個節點都有 input/output 與錯誤訊息\n- 可以多人協作嗎？ → Pro 以上支援多人編輯與版本歷史\n- AI 回覆亂講怎麼辦？ → 開啟「知識庫引用模式」強制附來源，並可設信心門檻，低於門檻轉人工"
+        },
+        {
+          "type": "round",
+          "round": 2
+        },
+        {
+          "type": "tool_call",
+          "name": "create_it_ticket",
+          "args": {
+            "title": "【追蹤】IntentFlow webhook 傳遞失敗與重試機制確認",
+            "description": "使用者詢問 IntentFlow webhook 接收端失敗時的重試次數。經查知識庫後確認：HTTP 5xx 或逾時會以指數退避重試 5 次（1m、5m、15m、1h、6h），全部失敗後進入 dead-letter queue，可在後台手動重送。為持續追蹤實際環境中 webhook 投遞失敗的情況，建立此工單。若已有明確失敗事件，請補充相關 run ID / 接收端服務。",
+            "priority": "P2"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "create_it_ticket",
+          "result": "工單已建立：IT-1EABD0E8\n標題：【追蹤】IntentFlow webhook 傳遞失敗與重試機制確認\n優先級：P2\n狀態：Open（IT 團隊會在 SLA 內回覆）"
+        },
+        {
+          "type": "round",
+          "round": 3
+        },
+        {
+          "type": "answer",
+          "text": "已為你完成查詢並開立工單，總結如下：\n\n**1. IntentFlow webhook 失敗重試次數**\n根據《IntentFlow API 與整合》與《IntentFlow 產品 FAQ》的說明：\n- 當接收端回傳 **HTTP 5xx** 或 **逾時（30 秒）** 時，會以**指數退避**方式重試 **共 5 次**（間隔 1m、5m、15m、1h、6h）。\n- 5 次全部失敗後，訊息會寫入 **dead-letter queue（DLQ）**，可在後台手動重送。\n- 另外提醒：webhook 帶有 `X-IF-Signature`（HMAC-SHA256），接收端務必驗證簽章。\n\n**2. IT 工單**\n已建立一筆 P2 工單追蹤此問題：\n- 單號：**IT-1EABD0E8**\n- 標題：【追蹤】IntentFlow webhook 傳遞失敗與重試機制確認\n- 狀態：Open（待 IT 團隊 SLA 內回覆）\n\n備註：工單目前是「機制確認」性質。如果你手上其實有具體的失敗事件（例如某筆 run 一直投遞失敗、DLQ 有堆積），可以給我相關的 run ID 或接收端服務名稱，我再幫你把細節補進工單，加速處理。",
+          "usage": {
+            "input": 2226,
+            "output": 319,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 2545,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "q": "幫我查林志穎請假還剩幾天，還有他的分機號碼",
+      "answer": "已為您查詢到林志穎（工程部／AI 工程師）的相關資訊：\n\n**假勤餘額**\n- 特休：7 天\n- 病假：30 天\n- 事假：14 天\n- 補休：0 天\n\n**通訊錄**\n- 分機：**218**\n- Email：jy.lin@yaosen.example.com\n\n若需要幫他送假單或查其他同仁資料，再跟我說喔！",
+      "trace": [
+        {
+          "type": "round",
+          "round": 1
+        },
+        {
+          "type": "tool_call",
+          "name": "leave_balance",
+          "args": {
+            "name": "林志穎"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "leave_balance",
+          "result": "{\n \"name\": \"林志穎\",\n \"annual\": 7,\n \"sick\": 30,\n \"personal\": 14,\n \"comp\": 0,\n \"dept\": \"工程部\"\n}"
+        },
+        {
+          "type": "tool_call",
+          "name": "employee_lookup",
+          "args": {
+            "query": "林志穎"
+          }
+        },
+        {
+          "type": "tool_result",
+          "name": "employee_lookup",
+          "result": "[\n {\n  \"name\": \"林志穎\",\n  \"dept\": \"工程部\",\n  \"title\": \"AI 工程師\",\n  \"email\": \"jy.lin@yaosen.example.com\",\n  \"ext\": \"218\",\n  \"joinDate\": \"2024-06-01\"\n }\n]"
+        },
+        {
+          "type": "round",
+          "round": 2
+        },
+        {
+          "type": "answer",
+          "text": "已為您查詢到林志穎（工程部／AI 工程師）的相關資訊：\n\n**假勤餘額**\n- 特休：7 天\n- 病假：30 天\n- 事假：14 天\n- 補休：0 天\n\n**通訊錄**\n- 分機：**218**\n- Email：jy.lin@yaosen.example.com\n\n若需要幫他送假單或查其他同仁資料，再跟我說喔！",
+          "usage": {
+            "input": 1333,
+            "output": 115,
+            "cacheRead": 0,
+            "cacheWrite": 0,
+            "reasoning": 0,
+            "totalTokens": 1448,
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0,
+              "total": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

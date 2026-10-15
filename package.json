@@ -1,0 +1,32 @@
+{
+  "name": "hono-rag-agent-demo",
+  "version": "0.1.0",
+  "description": "Hono + pi-ai + ArliAI enterprise RAG & AI Agent demo",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch --env-file-if-exists=.env src/server.ts",
+    "start": "tsx --env-file-if-exists=.env src/server.ts",
+    "seed": "tsx --env-file-if-exists=.env src/seed.ts",
+    "canned": "tsx --env-file-if-exists=.env src/canned.ts",
+    "eval": "tsx --env-file-if-exists=.env src/eval.ts",
+    "demo": "bash scripts/demo.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@earendil-works/pi-ai": "^1.2.0",
+    "@hono/node-server": "^2.1.5",
+    "fastembed": "^3.0.0",
+    "hono": "^4.13.13"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "engines": {
+    "node": ">=22.19"
+  }
+}

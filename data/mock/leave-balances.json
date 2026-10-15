@@ -1,0 +1,10 @@
+[
+  { "name": "王小明", "annual": 10, "sick": 30, "personal": 14, "comp": 3.5 },
+  { "name": "林志穎", "annual": 7, "sick": 30, "personal": 14, "comp": 0 },
+  { "name": "陳美玲", "annual": 14, "sick": 24, "personal": 14, "comp": 6 },
+  { "name": "張大文", "annual": 10, "sick": 30, "personal": 11, "comp": 2 },
+  { "name": "李雅婷", "annual": 15, "sick": 30, "personal": 14, "comp": 8 },
+  { "name": "黃建華", "annual": 7, "sick": 28, "personal": 14, "comp": 1 },
+  { "name": "吳俊傑", "annual": 15, "sick": 30, "personal": 14, "comp": 4 },
+  { "name": "蔡宜蓁", "annual": 3, "sick": 30, "personal": 14, "comp": 0 }
+]

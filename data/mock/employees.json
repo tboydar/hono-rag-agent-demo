@@ -1,0 +1,10 @@
+[
+  { "name": "王小明", "dept": "工程部", "title": "後端工程師", "email": "ming.wang@yaosen.example.com", "ext": "215", "joinDate": "2023-03-15" },
+  { "name": "林志穎", "dept": "工程部", "title": "AI 工程師", "email": "jy.lin@yaosen.example.com", "ext": "218", "joinDate": "2024-06-01" },
+  { "name": "陳美玲", "dept": "產品部", "title": "產品經理", "email": "ml.chen@yaosen.example.com", "ext": "302", "joinDate": "2022-08-10" },
+  { "name": "張大文", "dept": "顧問部", "title": "AI 導入顧問", "email": "dw.chang@yaosen.example.com", "ext": "410", "joinDate": "2023-11-20" },
+  { "name": "李雅婷", "dept": "客戶成功部", "title": "客服主管", "email": "yt.lee@yaosen.example.com", "ext": "501", "joinDate": "2022-02-14" },
+  { "name": "黃建華", "dept": "行政部", "title": "HR 專員", "email": "jh.huang@yaosen.example.com", "ext": "102", "joinDate": "2024-01-08" },
+  { "name": "吳俊傑", "dept": "工程部", "title": "SRE", "email": "jj.wu@yaosen.example.com", "ext": "299", "joinDate": "2021-09-01" },
+  { "name": "蔡宜蓁", "dept": "產品部", "title": "UI/UX 設計師", "email": "yc.tsai@yaosen.example.com", "ext": "305", "joinDate": "2025-04-14" }
+]

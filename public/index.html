@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>曜昇科技 · 企業 AI 助理 Demo（Hono + pi-ai + RAG）</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --panel2: #1c2330; --border: #2d333b;
+    --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; --accent2: #3fb950;
+    --warn: #d29922; --danger: #f85149; --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.65 -apple-system, "PingFang TC", "Noto Sans TC", system-ui, sans-serif; }
+  header { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-bottom: 1px solid var(--border); background: var(--panel); position: sticky; top: 0; z-index: 10; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  header .sub { color: var(--muted); font-size: 13px; }
+  .badge { font-size: 12px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .badge.on { color: var(--accent2); border-color: var(--accent2); }
+  .badge.canned { color: var(--warn); border-color: var(--warn); }
+  .badge.err { color: var(--danger); border-color: var(--danger); }
+  #apiwrap { margin-left: auto; display: flex; gap: 6px; align-items: center; }
+  #api { width: 300px; background: var(--panel2); border: 1px solid var(--border); color: var(--text); padding: 5px 10px; border-radius: 6px; font-family: var(--mono); font-size: 12px; }
+  main { max-width: 860px; margin: 0 auto; padding: 18px 16px 120px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+  .tab { padding: 7px 18px; border-radius: 8px; border: 1px solid var(--border); background: var(--panel); color: var(--muted); cursor: pointer; font-size: 14px; }
+  .tab.active { color: var(--text); border-color: var(--accent); background: var(--panel2); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip { font-size: 13px; color: var(--accent); background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer; }
+  .chip:hover { border-color: var(--accent); }
+  #log { display: flex; flex-direction: column; gap: 14px; }
+  .msg { padding: 12px 16px; border-radius: 10px; }
+  .msg.user { background: #1f3a5f; align-self: flex-end; max-width: 80%; }
+  .msg.bot { background: var(--panel); border: 1px solid var(--border); }
+  .msg .label { font-size: 11px; color: var(--muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .msg .body { white-space: pre-wrap; word-break: break-word; }
+  .msg .body code { background: var(--panel2); padding: 1px 5px; border-radius: 4px; font-family: var(--mono); font-size: 13px; }
+  .msg .body strong { color: #79c0ff; }
+  .sources { margin-top: 10px; border-top: 1px dashed var(--border); padding-top: 8px; }
+  .src { font-size: 12.5px; color: var(--muted); padding: 6px 8px; border-radius: 6px; margin: 4px 0; background: var(--panel2); cursor: pointer; }
+  .src:hover { color: var(--text); }
+  .src .n { color: var(--accent); font-family: var(--mono); margin-right: 6px; }
+  .src .via { float: right; font-family: var(--mono); font-size: 11px; color: var(--warn); }
+  .src .snip { display: none; margin-top: 6px; color: var(--muted); white-space: pre-wrap; font-size: 12px; }
+  .src.open .snip { display: block; }
+  .trace { margin-top: 8px; }
+  .step { border-left: 2px solid var(--accent2); padding: 6px 10px; margin: 6px 0 6px 4px; font-size: 13px; background: var(--panel2); border-radius: 0 8px 8px 0; }
+  .step .tname { color: var(--accent2); font-family: var(--mono); font-weight: 600; }
+  .step pre { margin: 6px 0 0; font-size: 12px; color: var(--muted); white-space: pre-wrap; word-break: break-word; font-family: var(--mono); }
+  .step .res { display: none; }
+  .step.open .res { display: block; }
+  .cursor { display: inline-block; width: 8px; height: 16px; background: var(--accent); vertical-align: -2px; animation: blink 0.8s infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  #composer { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg); border-top: 1px solid var(--border); padding: 12px 16px; }
+  #composer .inner { max-width: 860px; margin: 0 auto; display: flex; gap: 8px; }
+  #q { flex: 1; background: var(--panel); border: 1px solid var(--border); color: var(--text); border-radius: 10px; padding: 10px 14px; font-size: 15px; font-family: inherit; }
+  #send { background: var(--accent); color: #04121f; border: 0; border-radius: 10px; padding: 0 22px; font-size: 15px; font-weight: 600; cursor: pointer; }
+  #send:disabled { opacity: .4; cursor: default; }
+  .note { color: var(--muted); font-size: 12.5px; margin: 0 0 14px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>曜昇科技 · 企業 AI 助理 Demo</h1>
+    <div class="sub">Hono + pi-ai + ArliAI · Hybrid RAG（vector + BM25）· Tool-calling Agent</div>
+  </div>
+  <span id="status" class="badge">connecting…</span>
+  <span id="model" class="badge"></span>
+  <div id="apiwrap">
+    <input id="api" placeholder="API base（例如 http://localhost:8788）" title="後端 API base URL" />
+  </div>
+</header>
+<main>
+  <div class="tabs">
+    <div class="tab active" data-tab="chat">📚 RAG 知識庫問答</div>
+    <div class="tab" data-tab="agent">🤖 AI Agent（工具呼叫）</div>
+  </div>
+  <p class="note" id="note"></p>
+  <div class="chips" id="chips"></div>
+  <div id="log"></div>
+</main>
+<div id="composer">
+  <div class="inner">
+    <input id="q" placeholder="輸入問題…（Enter 送出）" autocomplete="off" />
+    <button id="send">送出</button>
+  </div>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+let apiBase = params.get("api") || localStorage.getItem("apiBase") || "";
+if (!apiBase && ["localhost", "127.0.0.1"].includes(location.hostname)) apiBase = "http://localhost:8788";
+$("#api").value = apiBase;
+$("#api").addEventListener("change", (e) => {
+  apiBase = e.target.value.trim().replace(/\/+$/, "");
+  localStorage.setItem("apiBase", apiBase);
+  ping();
+});
+
+let canned = null, serverConfig = null, online = false, mode = "chat";
+const history = { chat: [], agent: [] };
+
+async function loadCanned() {
+  try { canned = await (await fetch("canned.json")).json(); } catch { canned = null; }
+}
+
+async function ping() {
+  if (!apiBase) return setOffline();
+  try {
+    const r = await fetch(apiBase + "/api/config", { signal: AbortSignal.timeout(4000) });
+    if (!r.ok) throw 0;
+    serverConfig = await r.json();
+    online = true;
+    $("#status").textContent = "● 線上";
+    $("#status").className = "badge on";
+    $("#model").textContent = serverConfig.model;
+    renderChips();
+    $("#note").innerHTML = "連線至後端 " + apiBase + "。RAG 會即時檢索知識庫並串流回答；Agent 會實際呼叫工具。";
+  } catch { setOffline(); }
+}
+
+function setOffline() {
+  online = false;
+  serverConfig = canned;
+  $("#status").textContent = canned ? "◐ 離線展示" : "✕ 未連線";
+  $("#status").className = canned ? "badge canned" : "badge err";
+  $("#model").textContent = canned?.model ?? "";
+  renderChips();
+  $("#note").innerHTML = canned
+    ? "目前為<b>離線展示模式</b>：回答為同一條管線預先產生的結果。在右上角填入後端網址（例如 localhost:8788）即可切換即時模式。"
+    : "連不到後端。請先在本機 <code>npm run dev</code>，或在右上角填入 API base URL。";
+}
+
+function renderChips() {
+  const qs = (serverConfig?.questions ?? { chat: [], agent: [] })[mode] ?? [];
+  $("#chips").innerHTML = qs.map((q) => `<div class="chip">${esc(q)}</div>`).join("");
+  document.querySelectorAll(".chip").forEach((c) => (c.onclick = () => { $("#q").value = c.textContent; send(); }));
+}
+
+document.querySelectorAll(".tab").forEach((t) => (t.onclick = () => {
+  mode = t.dataset.tab;
+  document.querySelectorAll(".tab").forEach((x) => x.classList.toggle("active", x === t));
+  renderChips();
+}));
+
+const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const mdLite = (s) => esc(s)
+  .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+  .replace(/`([^`]+)`/g, "<code>$1</code>")
+  .replace(/〔(\d+)〕/g, '<a href="javascript:void 0" class="cite" data-n="$1">〔$1〕</a>');
+
+function addMsg(role, label) {
+  const div = document.createElement("div");
+  div.className = "msg " + role;
+  div.innerHTML = `<div class="label">${label}</div><div class="body"></div>`;
+  $("#log").appendChild(div);
+  div.scrollIntoView({ behavior: "smooth", block: "end" });
+  return div.querySelector(".body");
+}
+
+function renderSources(body, sources) {
+  if (!sources?.length) return;
+  const box = document.createElement("div");
+  box.className = "sources";
+  box.innerHTML = `<div class="label">引用來源（${sources.length}）</div>` + sources.map((s, i) =>
+    `<div class="src" id="src-${i + 1}"><span class="n">〔${i + 1}〕</span>${esc(s.doc)}${s.heading ? " — " + esc(s.heading) : ""}<span class="via">${s.via} · ${s.score}</span><div class="snip">${esc(s.snippet)}…</div></div>`
+  ).join("");
+  body.appendChild(box);
+  box.querySelectorAll(".src").forEach((el) => (el.onclick = () => el.classList.toggle("open")));
+  body.querySelectorAll(".cite").forEach((a) => (a.onclick = () => {
+    const t = box.querySelector(`#src-${a.dataset.n}`);
+    if (t) { t.classList.add("open"); t.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  }));
+}
+
+function renderTrace(body, trace) {
+  const box = document.createElement("div");
+  box.className = "trace";
+  box.innerHTML = `<div class="label">Agent 執行追蹤</div>`;
+  body.appendChild(box);
+  return (e) => {
+    if (e.type === "tool_call") {
+      const d = document.createElement("div");
+      d.className = "step";
+      d.innerHTML = `🔧 <span class="tname">${esc(e.name)}</span><pre>${esc(JSON.stringify(e.args))}</pre><pre class="res"></pre>`;
+      box.appendChild(d);
+      d.onclick = () => d.classList.toggle("open");
+      d.dataset.pending = e.name;
+      $("#log").scrollIntoView({ behavior: "smooth", block: "end" });
+    } else if (e.type === "tool_result") {
+      const pending = [...box.querySelectorAll(".step")].reverse().find((s) => s.dataset.pending === e.name && !s.querySelector(".res").textContent);
+      if (pending) pending.querySelector(".res").textContent = "→ " + e.result;
+    }
+  };
+}
+
+async function* ssePost(url, payload) {
+  const r = await fetch(url, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(payload) });
+  if (!r.ok || !r.body) throw new Error("HTTP " + r.status);
+  const reader = r.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let idx;
+    while ((idx = buf.indexOf("\n\n")) >= 0) {
+      const raw = buf.slice(0, idx);
+      buf = buf.slice(idx + 2);
+      const ev = { event: "message", data: "" };
+      for (const line of raw.split("\n")) {
+        if (line.startsWith("event:")) ev.event = line.slice(6).trim();
+        else if (line.startsWith("data:")) ev.data += line.slice(5).trim();
+      }
+      if (ev.data) { try { ev.data = JSON.parse(ev.data); } catch {} yield ev; }
+    }
+  }
+}
+
+async function send() {
+  const q = $("#q").value.trim();
+  if (!q) return;
+  $("#q").value = "";
+  $("#send").disabled = true;
+  addMsg("user", "你").textContent = q;
+  const body = addMsg("bot", mode === "chat" ? "RAG 助理" : "Agent · 小意");
+  const cur = { q };
+
+  try {
+    if (!online) throw { offline: true };
+    if (mode === "chat") {
+      let text = "";
+      const cursor = document.createElement("span"); cursor.className = "cursor"; body.appendChild(cursor);
+      for await (const ev of ssePost(apiBase + "/api/chat", { q, messages: history.chat })) {
+        if (ev.event === "token") { text += ev.data.text; body.innerHTML = mdLite(text); body.appendChild(cursor); }
+        else if (ev.event === "sources") renderSources(body, ev.data);
+        else if (ev.event === "error") throw new Error(ev.data.message);
+      }
+      cursor.remove();
+    } else {
+      const tracer = renderTrace(body, []);
+      for await (const ev of ssePost(apiBase + "/api/agent", { q })) {
+        if (ev.event === "tool_call" || ev.event === "tool_result") tracer(ev.data);
+        else if (ev.event === "answer") { const ans = document.createElement("div"); ans.className = "body"; ans.innerHTML = mdLite(ev.data.text); body.appendChild(ans); }
+        else if (ev.event === "error") throw new Error(ev.data.message);
+      }
+    }
+    history[mode].push({ role: "user", content: q });
+  } catch (err) {
+    // offline / canned fallback
+    const c = canned?.[mode]?.find((x) => x.q === q);
+    if (c) {
+      body.innerHTML = `<div class="label" style="color:var(--warn)">◐ 離線展示 · 預錄回答</div>` + mdLite(c.answer);
+      if (mode === "chat") renderSources(body, c.sources);
+      if (mode === "agent" && c.trace) { const t = renderTrace(body, []); c.trace.forEach((e) => t(e)); }
+    } else {
+      body.innerHTML += `<div style="color:var(--danger);margin-top:6px">⚠ ${esc(err.message || "連線失敗")} — 此問題不在離線展示清單中，請連上後端再試。</div>`;
+    }
+  }
+  $("#send").disabled = false;
+  $("#q").focus();
+}
+
+$("#send").onclick = send;
+$("#q").addEventListener("keydown", (e) => e.key === "Enter" && send());
+loadCanned().then(ping);
+</script>
+</body>
+</html>

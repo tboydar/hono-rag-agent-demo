@@ -1,0 +1,8 @@
+node_modules
+.env
+data/kb.sqlite*
+data/.fastembed-cache
+.git
+.github
+*.log
+.DS_Store
